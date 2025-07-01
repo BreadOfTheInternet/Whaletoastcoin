@@ -1,6 +1,6 @@
 // ==== CONFIG ====
 // Your deployed Whale Toast Swap contract address
-const CONTRACT_ADDRESS = "0x89533867273E6300d6F20b10acD0EE3356Ce1974";
+const CONTRACT_ADDRESS = "0x906F65d2436e88c6a41609FAeec8418F75D02882";
 
 const connectBtn = document.getElementById("connect-btn");
 const buyBtn     = document.getElementById("buy-btn");
@@ -60,3 +60,4 @@ buyBtn.onclick = async () => {
     status.textContent = `❌ Tx failed: ${err.message}`;
   }
 };
+
