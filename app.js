@@ -1,6 +1,6 @@
 // ==== CONFIG ====
 // Your deployed Whale Toast Swap contract address
-const CONTRACT_ADDRESS = "0x906F65d2436e88c6a41609FAeec8418F75D02882";
+const CONTRACT_ADDRESS = "0x472AF97eBC7A834509d6D8a9c3c6c89E63A05333";
 
 const connectBtn = document.getElementById("connect-btn");
 const buyBtn     = document.getElementById("buy-btn");
