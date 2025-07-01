@@ -1,145 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buy $WTOAST</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <style>
-    :root {
-      --purple: #6a0dad;
-      --purple-dark: #5e068a;
-      --yellow: #ffd141;
-      --gray-light: #f5f5f5;
-      --gray-dark: #333;
-      --transition: 0.3s ease;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      transition: var(--transition);
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--yellow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .header-logos { display: flex; gap: 2rem; margin-bottom: 1rem; }
-    .header-logos img { height: 160px; background: var(--yellow); }
-    .box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1rem;
-      width: 90%;
-      max-width: 360px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    h2 { margin: 0; color: var(--purple-dark); font-weight: 600; font-size: 1.5rem; }
-    p { margin: 0; color: var(--gray-dark); }
-    .rate { font-weight: 600; color: var(--purple); }
-    input, button {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
-      border: 2px solid transparent;
-      font-family: inherit;
-      font-size: 1rem;
-      outline: none;
-    }
-    input {
-      background: var(--gray-light);
-      border-color: var(--gray-light);
-    }
-    input:focus {
-      border-color: var(--purple);
-      background: #fff;
-    }
-    button {
-      background: var(--purple);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    button:hover:not(:disabled) { background: var(--purple-dark); }
-    button:disabled { background: #ccc; cursor: not-allowed; }
-    .status {
-      min-height: 1.5em;
-      font-size: 0.9rem;
-      color: var(--purple-dark);
-      font-weight: 500;
-    }
-    .mobile-open { display: none; margin: 1rem 0; text-align: center; }
-    .mobile-open a {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--purple);
-      color: #fff;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .mobile-open a:hover { background: var(--purple-dark); }
-    @media (max-width: 600px) { .mobile-open { display: block; } }
-    footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      text-align: center;
-      color: var(--gray-dark);
-    }
-    footer a { color: var(--purple); text-decoration: none; margin: 0 .25rem; }
-    footer a:hover { text-decoration: underline; }
-    @media (max-width: 400px) {
-      .box { padding: 1.5rem; }
-      h2 { font-size: 1.25rem; }
-    }
-  </style>
-</head>
-<body>
+<style>
+  :root {
+    --primary: #004C99;         /* Ocean Blue background */
+    --primary-dark: #003366;
+    --accent: #6a0dad;          /* Purple accents */
+    --accent-dark: #5e068a;
+    --light: #f5f5f5;
+    --text-dark: #fff;
+    --transition: 0.3s ease;
+  }
 
-<div class="header-logos">
-  <img src="WTC-LOGO.png" alt="$WTOAST Logo" />
-  <img src="polygon.png" alt="Polygon Logo" />
-</div>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    transition: var(--transition);
+  }
 
-<div class="box">
-  <p>Welcome to the official $WTOAST DEX — the gateway to Whale Toast Coin!</p>
-  <h2>Buy <span class="rate">$WTOAST</span></h2>
-  <button id="connect-btn">Connect Wallet</button>
-  <p id="wallet-status" class="status">Not connected</p>
-  <p>Rate: <span class="rate">1 MATIC = 1800 WTOAST</span></p>
-  <input type="number" id="amount-input" placeholder="Amount of MATIC" disabled />
-  <button id="buy-btn" disabled>Buy $WTOAST</button>
-  <p id="status" class="status"></p>
-</div>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 
-<div class="mobile-open">
-  <a href="https://metamask.app.link/dapp/breadoftheinternet.github.io/Whaletoastcoin" target="_blank">
-    Connect With MetaMask (For Mobile)
-  </a>
-</div>
+  .header-logos {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+  .header-logos img {
+    height: 160px;
+    background: var(--primary);
+  }
 
-<footer>
-  <a href="https://polygonscan.com/address/0x472AF97eBC7A834509d6D8a9c3c6c89E63A05333#code" target="_blank">Swap Contract</a> |
-  <a href="https://polygonscan.com/address/0x906F65d2436e88c6a41609FAeec8418F75D02882#code" target="_blank">Token Contract</a> |
-  <a href="https://polygonscan.com/token/0x906F65d2436e88c6a41609FAeec8418F75D02882" target="_blank">Token Details</a> |
-  <a href="https://linktr.ee/YOUR_PROJECT_LINKS" target="_blank">More Links</a>
-</footer>
+  .box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-<script src="app.js"></script>
-</body>
-</html>
+  h2 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  p {
+    margin: 0;
+    color: var(--primary-dark);
+  }
+  .rate {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  input, button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  input {
+    background: var(--light);
+    border-color: var(--light);
+  }
+  input:focus {
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button:hover:not(:disabled) {
+    background: var(--accent-dark);
+  }
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .status {
+    min-height: 1.5em;
+    font-size: 0.9rem;
+    color: var(--accent-dark);
+    font-weight: 500;
+  }
+
+  .mobile-open {
+    display: none;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .mobile-open a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .mobile-open a:hover {
+    background: var(--accent-dark);
+  }
+  @media (max-width: 600px) {
+    .mobile-open { display: block; }
+  }
+
+  footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-dark);
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 .25rem;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 400px) {
+    .box { padding: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+  }
+</style>
+
 
