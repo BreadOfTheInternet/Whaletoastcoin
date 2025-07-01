@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+interface IERC20 {
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
+}
+
+contract WhaleToastSwap {
+    // Updated owner address
+    address public owner = 0x40726Dbe406b8B79c88c0fa45D3caA8e3574D7b6;
+    
+    // Updated token address
+    IERC20 public wtoastToken = IERC20(0x906F65d2436e88c6a41609FAeec8418F75D02882);
+    
+    uint256 public rate = 1800;
+
+    constructor() {}
+
+    receive() external payable {
+        buyWTOAST();
+    }
+
+    function buyWTOAST() public payable {
+        require(msg.value > 0, "Send some MATIC");
+        
+        uint256 amountToSend = msg.value * rate;
+        require(
+            wtoastToken.balanceOf(address(this)) >= amountToSend,
+            "Not enough WTOAST in contract"
+        );
+
+        // Send WTOAST to buyer
+        wtoastToken.transfer(msg.sender, amountToSend);
+
+        // Immediately forward MATIC to owner
+        payable(owner).transfer(msg.value);
+    }
+
+    function withdrawTokens() external {
+        require(msg.sender == owner, "Only owner");
+        uint256 balance = wtoastToken.balanceOf(address(this));
+        wtoastToken.transfer(owner, balance);
+    }
+
+    function updateRate(uint256 newRate) external {
+        require(msg.sender == owner, "Only owner");
+        rate = newRate;
+    }
+}
