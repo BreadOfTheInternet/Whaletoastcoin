@@ -1,4 +1,15 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy $WTOAST</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+ <style>
   :root {
     --primary: #004C99;         /* Ocean Blue background */
     --primary-dark: #003366;
@@ -147,4 +158,39 @@
   }
 </style>
 
+</head>
+<body>
+
+<div class="header-logos">
+  <img src="WTC-LOGO.png" alt="$WTOAST Logo" />
+  <img src="polygon.png" alt="Polygon Logo" />
+</div>
+
+<div class="box">
+  <p>Welcome to the official $WTOAST DEX — the gateway to Whale Toast Coin!</p>
+  <h2>Buy <span class="rate">$WTOAST</span></h2>
+  <button id="connect-btn">Connect Wallet</button>
+  <p id="wallet-status" class="status">Not connected</p>
+  <p>Rate: <span class="rate">1 MATIC = 1800 WTOAST</span></p>
+  <input type="number" id="amount-input" placeholder="Amount of MATIC" disabled />
+  <button id="buy-btn" disabled>Buy $WTOAST</button>
+  <p id="status" class="status"></p>
+</div>
+
+<div class="mobile-open">
+  <a href="https://metamask.app.link/dapp/breadoftheinternet.github.io/Whaletoastcoin" target="_blank">
+    Connect With MetaMask (For Mobile)
+  </a>
+</div>
+
+<footer>
+  <a href="https://polygonscan.com/address/0x472AF97eBC7A834509d6D8a9c3c6c89E63A05333#code" target="_blank">Swap Contract</a> |
+  <a href="https://polygonscan.com/address/0x906F65d2436e88c6a41609FAeec8418F75D02882#code" target="_blank">Token Contract</a> |
+  <a href="https://polygonscan.com/token/0x906F65d2436e88c6a41609FAeec8418F75D02882" target="_blank">Token Details</a> |
+  <a href="https://linktr.ee/YOUR_PROJECT_LINKS" target="_blank">More Links</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
 
