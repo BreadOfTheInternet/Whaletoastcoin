@@ -186,7 +186,7 @@ contract ERC20 is Context, IERC20 {
 
 // ----------- WhaleToastCoin ----------
 contract WhaleToastCoin is ERC20, Ownable {
-    constructor() ERC20("Whale Toast Coin", "WTC") Ownable(msg.sender) {
+    constructor() ERC20("Whale Toast Coin", "WTOAST") Ownable(msg.sender) {
         _mint(msg.sender, 3600900000000000000000000000);
     }
 }
